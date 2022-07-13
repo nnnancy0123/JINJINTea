@@ -124,4 +124,27 @@ public class CategoryInfo {
         }
 
     }
+
+    public void categoryDelete(CategoryListInfo cl) {
+
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+
+            Statement query = conn.createStatement();
+
+            StringBuffer sb = new StringBuffer();
+            sb.append("delete from tbl_category ");
+            sb.append(" where ");
+            sb.append("category_id = '" + cl.getCategoryId() + "'");
+            sb.append(";");
+       System.out.println(sb.toString());
+            query.execute(sb.toString());
+
+        } catch (SQLException e) {
+            System.out.println("SQLException");
+        }
+    }
 }

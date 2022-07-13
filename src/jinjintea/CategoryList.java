@@ -168,7 +168,7 @@ public class CategoryList extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       //刷新页面，取保留页面的这个数值
+        //刷新页面，取保留页面的这个数值
         getCategoryList();
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -192,10 +192,10 @@ public class CategoryList extends javax.swing.JFrame {
         cl.setCategoryName(df.getValueAt(row, 1).toString());
         cl.setSort(df.getValueAt(row, 2).toString());
         cl.setShowFlg(df.getValueAt(row, 3).toString());
-        
+
         CategoryInfo c = new CategoryInfo();
         c.categoryUpdate(cl);
-        
+
         System.out.println(df.getValueAt(row, 0));
         System.out.println(df.getValueAt(row, 1));
         System.out.println(df.getValueAt(row, 2));
@@ -204,7 +204,13 @@ public class CategoryList extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        //
+        CategoryListInfo cl = new CategoryListInfo();
+        cl.setCategoryId(df.getValueAt(row, 0).toString());
+        CategoryInfo c = new CategoryInfo();
+        c.categoryDelete(cl);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
