@@ -88,6 +88,11 @@ public class CategoryList extends javax.swing.JFrame {
         });
 
         jButton2.setText("削除");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("編集");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +168,7 @@ public class CategoryList extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+       //刷新页面，取保留页面的这个数值
         getCategoryList();
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -197,6 +202,10 @@ public class CategoryList extends javax.swing.JFrame {
         System.out.println(df.getValueAt(row, 3));
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
