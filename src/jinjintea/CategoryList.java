@@ -32,6 +32,7 @@ public class CategoryList extends javax.swing.JFrame {
             df.addRow(new Object[]{c.getCategoryId(), c.getCategoryName(), c.getSort(), c.getShowFlg(), c.getDateCreated(), c.getDate_modified()});
 
         }
+        System.out.println("xxxxxx");
     }
 
     /**
