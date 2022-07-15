@@ -5,6 +5,7 @@
  */
 package jinjintea;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,6 +31,9 @@ public class CategoryList extends javax.swing.JFrame {
 
         for (CategoryListInfo c : listinfo) {
             df.addRow(new Object[]{c.getCategoryId(), c.getCategoryName(), c.getSort(), c.getShowFlg(), c.getDateCreated(), c.getDate_modified()});
+
+            String datetimesys = jLabel3.getText();//一番上のシステム時間を表示する
+
 
         }
     }
@@ -247,6 +251,7 @@ public class CategoryList extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
