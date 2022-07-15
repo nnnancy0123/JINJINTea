@@ -5,6 +5,7 @@
  */
 package jinjintea;
 
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +21,14 @@ public class ProductInfo extends javax.swing.JFrame {
     public ProductInfo() {
         initComponents();
         getProductInfo();
+         Calendar calendar = Calendar.getInstance();
+         
+         ProductInfo t = new ProductInfo();
+
+        
+         
     }
+   
 
     public void getProductInfo() {
         ProductIntro productIntro = new ProductIntro();
