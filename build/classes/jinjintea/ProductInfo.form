@@ -36,20 +36,20 @@
           </Group>
           <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="451" max="-2" attributes="0"/>
-              <Component id="jButton5" min="-2" pref="84" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton4" min="-2" pref="93" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="91" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="99" max="-2" attributes="0"/>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="810" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jButton5" min="-2" pref="84" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButton4" min="-2" pref="93" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" pref="91" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="99" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane1" min="-2" pref="922" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="112" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,14 +67,14 @@
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="198" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jButton3" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jButton4" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jButton5" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <EmptySpace pref="94" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,7 +115,7 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
+              <Table columnCount="9" rowCount="0">
                 <Column editable="true" title="&#x5546;&#x54c1;ID" type="java.lang.Object"/>
                 <Column editable="true" title="&#x5546;&#x54c1;&#x540d;" type="java.lang.Object"/>
                 <Column editable="true" title="&#x30bd;&#x30fc;&#x30c8;&#x756a;&#x53f7;" type="java.lang.Object"/>
@@ -123,6 +123,8 @@
                 <Column editable="true" title="&#x91d1;&#x984d;" type="java.lang.Object"/>
                 <Column editable="true" title="&#x8cfc;&#x5165;&#x6700;&#x5927;&#x91cf;" type="java.lang.Object"/>
                 <Column editable="true" title="&#x5728;&#x5eab;" type="java.lang.Object"/>
+                <Column editable="true" title="&#x4f5c;&#x6210;&#x65e5;&#x4ed8;" type="java.lang.Object"/>
+                <Column editable="true" title="&#x66f4;&#x65b0;&#x65e5;&#x4ed8;" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

@@ -25,13 +25,14 @@ public class ProductIntro {
         String url = "jdbc:postgresql://localhost:5432/kin";
         String user = "postgres";
         String password = "postgres";
+        LocalDateTime date = LocalDateTime.now();
 
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
 
             Statement query = conn.createStatement();
-            String sql = "insert into tbl_product( product_id,product_name,sort,category,price,max_nom,warehouse) "
-                    + "values('" + productid + "','" + productname + "','" + sort + "'," + "'category '" + "," + "'" + price + "'," + "'maxnom'," + "'" + warehouse + "')";
+            String sql = "insert into tbl_product( product_id,product_name,sort,category,price,max_nom,warehouse,date_created,date_modified) "
+                    + "values('" + productid + "','" + productname + "','" + sort + "'," + "'category '" + "," + "'" + price + "'," + "'maxnom'," + "'" + warehouse + "'," + "'" + date + "'," + "'" + date + "'" + ")";
 
             System.out.println(sql);
             query.execute(sql);
@@ -62,6 +63,8 @@ public class ProductIntro {
                 productlist.setPrice(resultset.getString("price"));
                 productlist.setMaxnom(resultset.getString("max_nom"));
                 productlist.setWarehouse(resultset.getString("warehouse"));
+                productlist.setDateCreated(resultset.getString("date_created"));
+                productlist.setDate_modified(resultset.getString("date_modified"));
                 
                 list.add(productlist);
             }

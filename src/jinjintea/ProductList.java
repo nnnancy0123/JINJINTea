@@ -18,6 +18,10 @@ public class ProductList {
     private String price;
     private String maxnom;
     private String warehouse;
+    private String dateCreated;
+    private String date_modified;
+
+   
 
     public String getProductId() {
         return productId;
@@ -73,6 +77,21 @@ public class ProductList {
 
     public void setWarehouse(String warehouse) {
         this.warehouse = warehouse;
+    }
+     public String getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public String getDate_modified() {
+        return date_modified;
+    }
+
+    public void setDate_modified(String date_modified) {
+        this.date_modified = date_modified;
     }
 
 }
