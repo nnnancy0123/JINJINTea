@@ -29,7 +29,7 @@ public class ProductInfo extends javax.swing.JFrame {
         df.setRowCount(0);
 
         for (ProductList a : listintro) {
-            df.addRow(new Object[]{a.getProductId(), a.getProductName(), a.getSort(), a.getCategory(), a.getPrice(), a.getMaxnom(), a.getWarehouse(),a.getDateCreated(),a.getDate_modified()});
+            df.addRow(new Object[]{a.getProductId(), a.getProductName(), a.getSort(), a.getCategory(), a.getPrice(), a.getMaxnom(), a.getWarehouse(), a.getDateCreated(), a.getDate_modified()});
 
         }
     }
@@ -88,6 +88,11 @@ public class ProductInfo extends javax.swing.JFrame {
         });
 
         jButton3.setText("削除");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("編集");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +121,7 @@ public class ProductInfo extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addGap(36, 36, 36))
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
@@ -167,7 +172,28 @@ public class ProductInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        //
+        ProductList cl = new ProductList();
+        cl.setProductId(df.getValueAt(row, 0).toString());
+        cl.setProductName(df.getValueAt(row, 1).toString());
+        cl.setSort(df.getValueAt(row, 2).toString());
+        cl.setCategory(df.getValueAt(row, 3).toString());
+        cl.setPrice(df.getValueAt(row, 4).toString());
+        cl.setMaxnom(df.getValueAt(row, 5).toString());
+        cl.setWarehouse(df.getValueAt(row, 6).toString());
+
+        ProductIntro c = new ProductIntro();
+        c.productUpdate(cl);
+
+        System.out.println(df.getValueAt(row, 0));
+        System.out.println(df.getValueAt(row, 1));
+        System.out.println(df.getValueAt(row, 2));
+        System.out.println(df.getValueAt(row, 3));
+        System.out.println(df.getValueAt(row, 4));
+        System.out.println(df.getValueAt(row, 5));
+        System.out.println(df.getValueAt(row, 6));
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -176,6 +202,16 @@ public class ProductInfo extends javax.swing.JFrame {
         up.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        //
+        ProductList cl = new ProductList();
+        cl.setProductId(df.getValueAt(row, 0).toString());
+        ProductIntro c = new ProductIntro();
+        c.productDelete(cl);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
