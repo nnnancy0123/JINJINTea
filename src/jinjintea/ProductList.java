@@ -13,6 +13,7 @@ public class ProductList {
 
     private String productId;
     private String productName;
+    private String sort;
     private String category;
     private String price;
     private String maxnom;
@@ -32,6 +33,14 @@ public class ProductList {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 
     public String getCategory() {
@@ -65,5 +74,5 @@ public class ProductList {
     public void setWarehouse(String warehouse) {
         this.warehouse = warehouse;
     }
-    
+
 }

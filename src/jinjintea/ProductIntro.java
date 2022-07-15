@@ -7,9 +7,12 @@ package jinjintea;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,27 +20,56 @@ import java.time.LocalDateTime;
  */
 public class ProductIntro {
 
-    public void conn(String productid, String productname, String category, String price, String maxnom, String warehouse) {
+    public void createProductInfo(String productid, String productname, int sort, String category, String price, String maxnom, String warehouse) {
 
         String url = "jdbc:postgresql://localhost:5432/kin";
         String user = "postgres";
         String password = "postgres";
 
-
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
 
             Statement query = conn.createStatement();
-            String sql = "insert into tbl_product( product_id,product_name,category,price,max_nom,warehouse) "
-                    + "values('" + productid + "','" + productname + "'," + "'category '"+ "," + "'" + price + "'," + "'maxnom'," + "'" + warehouse + "')";
+            String sql = "insert into tbl_product( product_id,product_name,sort,category,price,max_nom,warehouse) "
+                    + "values('" + productid + "','" + productname + "','" + sort + "'," + "'category '" + "," + "'" + price + "'," + "'maxnom'," + "'" + warehouse + "')";
 
             System.out.println(sql);
             query.execute(sql);
-//
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException----NG");
+        }
+
+    }
+    
+
+    public List<ProductList> listIntro() {
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        List<ProductList> list = new ArrayList<ProductList>();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            Statement query = conn.createStatement();
+            ResultSet resultset = query.executeQuery("SELECT * FROM tbl_product");
+            while (resultset.next()) {
+
+                ProductList productlist = new ProductList();
+                productlist.setProductId(resultset.getString("product_id"));
+                productlist.setProductName(resultset.getString("product_name"));
+                productlist.setSort(String.valueOf(resultset.getInt("sort")));
+                productlist.setCategory(resultset.getString("category"));
+                productlist.setPrice(resultset.getString("price"));
+                productlist.setMaxnom(resultset.getString("max_nom"));
+                productlist.setWarehouse(resultset.getString("warehouse"));
+                
+                list.add(productlist);
+            }
+
             conn.close();
         } catch (SQLException ex) {
             System.out.println("SQLException");
         }
-
+        return list;
     }
 }

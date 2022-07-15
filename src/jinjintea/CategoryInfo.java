@@ -45,25 +45,7 @@ public class CategoryInfo {
 
     }
 
-    public void CategoryInfoChat() {
 
-        String url = "jdbc:postgresql://localhost:5432/kin";
-        String user = "postgres";
-        String password = "postgres";
-        try {
-            Connection conn = DriverManager.getConnection(url, user, password);
-
-            Statement query = conn.createStatement();
-            ResultSet resultset = query.executeQuery("SELECT * FROM tbl_category");
-            while (resultset.next()) {
-                System.out.println(resultset.getString("category_id") + "\t" + resultset.getString("category_name") + "\t" + resultset.getString("surname") + "\t" + resultset.getString("sort") + "\t" + resultset.getString("show_flg") + "\t" + resultset.getString("del_flg") + "\t" + resultset.getString("date_created") + "\t" + resultset.getString("date_modified"));
-            }
-
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println("SQLException");
-        }
-    }
 
     public List<CategoryListInfo> listInfo() {
         String url = "jdbc:postgresql://localhost:5432/kin";
