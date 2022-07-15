@@ -148,7 +148,7 @@ public class CategoryPage extends javax.swing.JFrame {
        category.conn(categoryid, categoryname, sort);
        
        CategoryList cl = new CategoryList();
-       cl.setVisible(true);
+       cl.setVisible(true);//初期状態で可視
        this.dispose();
  
     }//GEN-LAST:event_jButton1ActionPerformed

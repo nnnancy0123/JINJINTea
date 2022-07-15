@@ -180,12 +180,15 @@ public class ProductPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String productid = jTextField8.getText();
-        String product = jTextField9.getText();
+        String productname = jTextField9.getText();
         String category = (String)jComboBox1.getSelectedItem();//ドロップ・ダウン・リスト選択肢
         String price = jTextField10.getText();
         String maxnom = jTextField12.getText();
         String warehouse = jTextField11.getText();
         
+        
+        ProductIntro productintro = new ProductIntro();
+        productintro.conn(productid, productname, category, price, maxnom, warehouse);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
