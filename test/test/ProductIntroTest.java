@@ -5,7 +5,7 @@
  */
 package test;
 
-import jinjintea.ProductIntro;
+import jin.tea.service.ProductService;
 import org.junit.Test;
 
 /**
@@ -18,7 +18,7 @@ public class ProductIntroTest {
     @Test
     public void test001(){
         
-        ProductIntro productIntro = new ProductIntro();
+        ProductService productIntro = new ProductService();
         
         String productid = "8001";
         String productname = "523";
