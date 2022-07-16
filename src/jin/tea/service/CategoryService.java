@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import jin.tea.object.CategoryObj;
+import jin.tea.object.ProductObj;
 
 /**
  *
@@ -26,8 +27,8 @@ public class CategoryService {
         String url = "jdbc:postgresql://localhost:5432/kin";
         String user = "postgres";
         String password = "postgres";
-  
-    //＠システムの時間を取る  
+
+        //＠システムの時間を取る  
         LocalDateTime date = LocalDateTime.now();
 
         try {
@@ -47,10 +48,9 @@ public class CategoryService {
 
     }
 
-
-
     /**
      * カテゴリ一覧取得処理
+     *
      * @return カテゴリリスト
      */
     public List<CategoryObj> categoryList() {
@@ -128,11 +128,37 @@ public class CategoryService {
             sb.append(" where ");
             sb.append("category_id = '" + cl.getCategoryId() + "'");
             sb.append(";");
-       System.out.println(sb.toString());
+            System.out.println(sb.toString());
             query.execute(sb.toString());
 
         } catch (SQLException e) {
             System.out.println("SQLException");
         }
+    }
+
+    public List<ProductObj> getProductName() {
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        List<ProductObj> list = new ArrayList<ProductObj>();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            Statement query = conn.createStatement();
+            ResultSet resultset = query.executeQuery("SELECT * FROM tbl_product");
+            while (resultset.next()) {
+
+                ProductObj productlist = new ProductObj();
+                productlist.setProductId(resultset.getString("product_id"));
+                productlist.setProductName(resultset.getString("product_name"));
+                productlist.setPrice(resultset.getString("price"));
+                
+                list.add(productlist);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException");
+        }
+        return list;
     }
 }
