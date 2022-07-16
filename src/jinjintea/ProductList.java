@@ -16,7 +16,7 @@ public class ProductList {
     private String sort;
     private String category;
     private String price;
-    private String maxnom;
+    private String maxnum;
     private String warehouse;
     private String dateCreated;
     private String date_modified;
@@ -63,12 +63,12 @@ public class ProductList {
         this.price = price;
     }
 
-    public String getMaxnom() {
-        return maxnom;
+    public String getMaxnum() {
+        return maxnum;
     }
 
-    public void setMaxnom(String maxnom) {
-        this.maxnom = maxnom;
+    public void setMaxnum(String maxnum) {
+        this.maxnum = maxnum;
     }
 
     public String getWarehouse() {

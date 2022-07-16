@@ -5,6 +5,8 @@
  */
 package jinjintea;
 
+import java.util.List;
+
 /**
  *
  * @author user
@@ -16,6 +18,18 @@ public class ProductPage extends javax.swing.JFrame {
      */
     public ProductPage() {
         initComponents();
+
+        ProductIntro getname = new ProductIntro();
+        List<CategoryListInfo> list = getname.getCategoryName();
+
+        for (CategoryListInfo name : list) {
+
+            jComboBox1.addItem(name.getCategoryName());
+        }
+//        jComboBox1.addItem("紅茶ミルクティー");
+//        jComboBox1.addItem("黒糖");
+//        jComboBox1.addItem("ココア");
+//        jComboBox1.addItem("マンゴー");
     }
 
     /**
@@ -73,8 +87,6 @@ public class ProductPage extends javax.swing.JFrame {
                 jTextField8ActionPerformed(evt);
             }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,15 +205,16 @@ public class ProductPage extends javax.swing.JFrame {
         String productid = jTextField8.getText();
         String productname = jTextField9.getText();
         int sort = Integer.valueOf(jTextField13.getText());
-        String category = (String)jComboBox1.getSelectedItem();//ドロップ・ダウン・リスト選択肢
-        String price = jTextField10.getText();
-        String maxnom = jTextField12.getText();
-        String warehouse = jTextField11.getText();
-        
-        
+        int price = Integer.valueOf(jTextField10.getText());
+        int maxnum = Integer.valueOf(jTextField10.getText());
+        int warehouse = Integer.valueOf(jTextField11.getText());
+        // String category = (String) jComboBox1.getSelectedItem();//ドロップ・ダウン・リスト選択肢
+        String category = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
+
+        System.out.println(category);
         ProductIntro productintro = new ProductIntro();
-        productintro.createProductInfo(productid, productname, sort, category, price, maxnom, warehouse);
-        
+        productintro.createProductInfo(productid, productname, sort, category, price, maxnum, warehouse);
+
         ProductInfo x = new ProductInfo();
         x.setVisible(true);
         this.dispose();

@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ProductIntro {
 
-    public void createProductInfo(String productid, String productname, int sort, String category, String price, String maxnom, String warehouse) {
+    public void createProductInfo(String productid, String productname, int sort, String category, int price, int maxnum, int warehouse) {
 
         String url = "jdbc:postgresql://localhost:5432/kin";
         String user = "postgres";
@@ -31,8 +31,8 @@ public class ProductIntro {
             Connection conn = DriverManager.getConnection(url, user, password);
 
             Statement query = conn.createStatement();
-            String sql = "insert into tbl_product( product_id,product_name,sort,category,price,max_nom,warehouse,date_created,date_modified) "
-                    + "values('" + productid + "','" + productname + "','" + sort + "'," + "'category '" + "," + "'" + price + "'," + "'maxnom'," + "'" + warehouse + "'," + "'" + date + "'," + "'" + date + "'" + ")";
+            String sql = "insert into tbl_product( product_id,product_name,sort,category,price,max_num,warehouse,date_created,date_modified) "
+                    + "values('" + productid + "','" + productname + "','" + sort + "'," + "'" + category + "'" + ",'" + price + "','" + maxnum + "','" + warehouse + "'," + "'" + date + "'," + "'" + date + "'" + ")";
 
             System.out.println(sql);
             query.execute(sql);
@@ -59,9 +59,9 @@ public class ProductIntro {
                 productlist.setProductName(resultset.getString("product_name"));
                 productlist.setSort(String.valueOf(resultset.getInt("sort")));
                 productlist.setCategory(resultset.getString("category"));
-                productlist.setPrice(resultset.getString("price"));
-                productlist.setMaxnom(resultset.getString("max_nom"));
-                productlist.setWarehouse(resultset.getString("warehouse"));
+                productlist.setPrice(String.valueOf(resultset.getInt("price")));
+                productlist.setMaxnum(String.valueOf(resultset.getInt("max_num")));
+                productlist.setWarehouse(String.valueOf(resultset.getInt("warehouse")));
                 productlist.setDateCreated(resultset.getString("date_created"));
                 productlist.setDate_modified(resultset.getString("date_modified"));
 
@@ -87,14 +87,14 @@ public class ProductIntro {
 
             StringBuffer sb = new StringBuffer();
             sb.append("update tbl_product set ");
-            sb.append("product_name = '" + cl.getProductName()+ "',");
-            sb.append(" sort = " + cl.getSort()+ ",");
-            sb.append(" category = '" + cl.getCategory()+ "',");
-            sb.append(" price = '" + cl.getPrice()+ "',");
-            sb.append(" max_nom = '" + cl.getMaxnom()+ "',");
-            sb.append(" warehouse = '" + cl.getWarehouse()+ "'");
+            sb.append("product_name = '" + cl.getProductName() + "',");
+            sb.append(" sort = " + cl.getSort() + ",");
+            sb.append(" category = '" + cl.getCategory() + "',");
+            sb.append(" price = '" + cl.getPrice() + "',");
+            sb.append(" max_nom = '" + cl.getMaxnum() + "',");
+            sb.append(" warehouse = '" + cl.getWarehouse() + "'");
             sb.append(" where ");
-            sb.append("product_id = '" + cl.getProductId()+ "'");
+            sb.append("product_id = '" + cl.getProductId() + "'");
             sb.append(";");
 
             System.out.println(sb.toString());
@@ -105,7 +105,8 @@ public class ProductIntro {
         }
 
     }
-     public void productDelete(ProductList cl) {
+
+    public void productDelete(ProductList cl) {
 
         String url = "jdbc:postgresql://localhost:5432/kin";
         String user = "postgres";
@@ -118,14 +119,64 @@ public class ProductIntro {
             StringBuffer sb = new StringBuffer();
             sb.append("delete from tbl_product ");
             sb.append(" where ");
-            sb.append("product_id = '" +cl.getProductId()+ "'");
+            sb.append("product_id = '" + cl.getProductId() + "'");
             sb.append(";");
-       System.out.println(sb.toString());
+            System.out.println(sb.toString());
             query.execute(sb.toString());
 
         } catch (SQLException e) {
             System.out.println("SQLException");
         }
     }
-}
 
+//    public List<ProductList> getCategoryName() {
+//        String url = "jdbc:postgresql://localhost:5432/kin";
+//        String user = "postgres";
+//        String password = "postgres";
+//        try {
+//            Connection conn = DriverManager.getConnection(url, user, password);
+//
+//            Statement query = conn.createStatement();
+//
+//            StringBuffer sb = new StringBuffer();
+//            sb.append("select category_name ");
+//            sb.append("from");
+//            sb.append("tbl_category");
+//            sb.append(";");
+//            System.out.println(sb.toString());
+//            query.execute(sb.toString());
+//
+//        } catch (SQLException e) {
+//            System.out.println("SQLException");
+//            
+//        }
+    
+ 
+
+
+
+    public List<CategoryListInfo> getCategoryName() {
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        List<CategoryListInfo> list = new ArrayList<CategoryListInfo>();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            Statement query = conn.createStatement();
+            ResultSet resultset = query.executeQuery("SELECT * FROM tbl_category");
+            while (resultset.next()) {
+
+                CategoryListInfo productlist = new CategoryListInfo();
+                productlist.setCategoryName(resultset.getString("category_name"));
+
+                list.add(productlist);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException");
+        }
+        return list;
+    }
+    
+}

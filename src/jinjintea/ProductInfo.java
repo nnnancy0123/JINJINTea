@@ -21,9 +21,8 @@ public class ProductInfo extends javax.swing.JFrame {
     public ProductInfo() {
         initComponents();
         getProductInfo();
-         Calendar calendar = Calendar.getInstance();
-         
-         ProductInfo t = new ProductInfo();
+//         Calendar calendar = Calendar.getInstance();
+//         ProductInfo t = new ProductInfo();
 
         
          
@@ -37,7 +36,7 @@ public class ProductInfo extends javax.swing.JFrame {
         df.setRowCount(0);
 
         for (ProductList a : listintro) {
-            df.addRow(new Object[]{a.getProductId(), a.getProductName(), a.getSort(), a.getCategory(), a.getPrice(), a.getMaxnom(), a.getWarehouse(), a.getDateCreated(), a.getDate_modified()});
+            df.addRow(new Object[]{a.getProductId(), a.getProductName(), a.getSort(), a.getCategory(), a.getPrice(), a.getMaxnum(), a.getWarehouse(), a.getDateCreated(), a.getDate_modified()});
 
         }
     }
@@ -189,7 +188,7 @@ public class ProductInfo extends javax.swing.JFrame {
         cl.setSort(df.getValueAt(row, 2).toString());
         cl.setCategory(df.getValueAt(row, 3).toString());
         cl.setPrice(df.getValueAt(row, 4).toString());
-        cl.setMaxnom(df.getValueAt(row, 5).toString());
+        cl.setMaxnum(df.getValueAt(row, 5).toString());
         cl.setWarehouse(df.getValueAt(row, 6).toString());
 
         ProductIntro c = new ProductIntro();

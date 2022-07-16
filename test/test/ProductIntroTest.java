@@ -23,11 +23,11 @@ public class ProductIntroTest {
         String productid = "8001";
         String productname = "523";
         String category = "555";
-        String price = "999";
-        String maxnom = "00";
-        String warehouse = "522";
+        int price = 999;
+        int maxnum = 00;
+        int warehouse = 522;
         
-        productIntro.createProductInfo(productid, productname, 0, category, price, maxnom, warehouse);
+        productIntro.createProductInfo(productid, productname, 0, category, price, maxnum, warehouse);
         
     }
     
