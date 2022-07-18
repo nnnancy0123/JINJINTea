@@ -62,7 +62,7 @@ public class CategoryService {
             Connection conn = DriverManager.getConnection(url, user, password);
 
             Statement query = conn.createStatement();
-            ResultSet resultset = query.executeQuery("SELECT * FROM tbl_category");
+            ResultSet resultset = query.executeQuery("SELECT * FROM tbl_category order by sort asc");
             while (resultset.next()) {
 
                 CategoryObj categorylistinfo = new CategoryObj();
@@ -147,12 +147,12 @@ public class CategoryService {
             ResultSet resultset = query.executeQuery("SELECT * FROM tbl_product");
             while (resultset.next()) {
 
-                ProductObj productlist = new ProductObj();
-                productlist.setProductId(resultset.getString("product_id"));
-                productlist.setProductName(resultset.getString("product_name"));
-                productlist.setPrice(resultset.getString("price"));
+                ProductObj protectlist = new ProductObj();
+                protectlist.setProductId(resultset.getString("product_id"));
+                protectlist.setProductName(resultset.getString("product_name"));
+                protectlist.setPrice(resultset.getString("price"));
                 
-                list.add(productlist);
+                list.add(protectlist);
             }
 
             conn.close();

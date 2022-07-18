@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jinjintea/ProductInfo.java</file>
-            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jinjintea/ProductList.java</file>
-            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jinjintea/ProductIntro.java</file>
-            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jinjintea/ProductPage.java</file>
+            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jin/tea/object/CategoryObj.java</file>
+            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jin/tea/service/ProductService.java</file>
+            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jin/tea/controller/CreateProductPage.java</file>
+            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jin/tea/controller/MainPage.java</file>
+            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jin/tea/object/ProductObj.java</file>
+            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jin/tea/service/CategoryService.java</file>
+            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jin/tea/controller/CategoryPage.java</file>
+            <file>file:/C:/gitworkspace/JinJinTea/JINJINTea/src/jin/tea/controller/ProductPage.java</file>
         </group>
     </open-files>
 </project-private>

@@ -27,7 +27,7 @@ public class CreateProductPage extends javax.swing.JFrame {
 
         for (CategoryObj name : list) {
 
-            jComboBox1.addItem(name.getCategoryName());
+            jComboBox1.addItem(name.getCategoryId() +":"+ name.getCategoryName());
         }
 //        jComboBox1.addItem("紅茶ミルクティー");
 //        jComboBox1.addItem("黒糖");
@@ -218,11 +218,11 @@ public class CreateProductPage extends javax.swing.JFrame {
         int maxnum = Integer.valueOf(jTextField10.getText());
         int warehouse = Integer.valueOf(jTextField11.getText());
         // String category = (String) jComboBox1.getSelectedItem();//ドロップ・ダウン・リスト選択肢
-        String category = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
+        String categoryId = jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).substring(0, 4);
 
-        System.out.println(category);
+        System.out.println(categoryId);
         ProductService productintro = new ProductService();
-        productintro.createProductInfo(productid, productname, sort, category, price, maxnum, warehouse);
+        productintro.createProductInfo(productid, productname, sort, categoryId, price, maxnum, warehouse);
 
         ProductPage x = new ProductPage();
         x.setVisible(true);

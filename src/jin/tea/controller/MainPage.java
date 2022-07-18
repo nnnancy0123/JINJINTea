@@ -39,7 +39,7 @@ public class MainPage extends javax.swing.JFrame {
         df.setRowCount(0);
 
         for (CategoryObj category : categoryList) {
-            df.addRow(new Object[]{category.getCategoryName()});
+            df.addRow(new Object[]{category.getCategoryId() +":"+ category.getCategoryName()});
 
         }
     }
@@ -152,6 +152,11 @@ public class MainPage extends javax.swing.JFrame {
                 "ID", "商品名", "金額"
             }
         ));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable3);
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
@@ -178,15 +183,15 @@ public class MainPage extends javax.swing.JFrame {
                 .addComponent(jSeparator1))
             .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -302,19 +307,24 @@ public class MainPage extends javax.swing.JFrame {
         DefaultTableModel dfm = (DefaultTableModel) jTable4.getModel();
         int row = jTable4.getSelectedRow();
         String name = dfm.getValueAt(row, 0).toString();
-        
+
         DefaultTableModel df = (DefaultTableModel) jTable3.getModel();
         df.setRowCount(0);
-        
-         
 
+        CategoryService getproductname = new CategoryService();
+        List<ProductObj> list = getproductname.getProductName();
+        
         for (int i = 0; i < 10; i++) {
-            df.addRow(new Object[]{"1000"+i,name+i,"580"});
+            df.addRow(new Object[]{"1000" + i, name + i, "580"});
 
         }
 
 
     }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable3MouseClicked
 
     /**
      * @param args the command line arguments
