@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import jin.tea.object.CategoryObj;
 import jin.tea.object.ProductObj;
 import jin.tea.service.CategoryService;
+import jin.tea.service.ProductService;
 
 /**
  *
@@ -39,7 +40,7 @@ public class MainPage extends javax.swing.JFrame {
         df.setRowCount(0);
 
         for (CategoryObj category : categoryList) {
-            df.addRow(new Object[]{category.getCategoryId() +":"+ category.getCategoryName()});
+            df.addRow(new Object[]{category.getCategoryId() + ":" + category.getCategoryName()});
 
         }
     }
@@ -307,20 +308,22 @@ public class MainPage extends javax.swing.JFrame {
         DefaultTableModel dfm = (DefaultTableModel) jTable4.getModel();
         int row = jTable4.getSelectedRow();
         String name = dfm.getValueAt(row, 0).toString();
+        String category = name.substring(0, 4);
 
         DefaultTableModel df = (DefaultTableModel) jTable3.getModel();
         df.setRowCount(0);
 
-        CategoryService getproductname = new CategoryService();
-        List<ProductObj> list = getproductname.getProductName();
-        
-        for (int i = 0; i < 10; i++) {
-            df.addRow(new Object[]{"1000" + i, name + i, "580"});
+        ProductService productservice = new ProductService();
+        List<ProductObj> productObjList = productservice.selectProductInfoByCategory(category);
+
+        for (ProductObj p : productObjList) {
+            df.addRow(new Object[]{p.getProductId(), p.getProductName(), p.getPrice()});
 
         }
 
 
     }//GEN-LAST:event_jTable4MouseClicked
+
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         // TODO add your handling code here:

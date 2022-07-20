@@ -158,4 +158,39 @@ public class ProductService {
         return list;
     }
 
+    /**
+     * 商品の内容とカテゴリーを連続する
+     * @param category カテゴリID
+     *
+     * @return 商品リスト
+     */
+    public List<ProductObj> selectProductInfoByCategory(String category) {
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        List<ProductObj> list = new ArrayList<ProductObj>();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            Statement query = conn.createStatement();
+            String sql = "select p.product_id, p.product_name,p.price, p.category_id, c.category_id from tbl_product p"
+                    + " left join tbl_category c "
+                    + " on p.category_id = c.category_id where p.category_id = '" + category + "' order by p.product_id asc";
+            ResultSet resultset = query.executeQuery(sql);
+
+            while (resultset.next()) {
+
+                ProductObj productconn = new ProductObj();
+                productconn.setProductId(resultset.getString("product_id"));
+                productconn.setProductName(resultset.getString("product_name"));
+                productconn.setPrice(String.valueOf(resultset.getInt("price")));
+                list.add(productconn);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException");
+        }
+        return list;
+    }
+
 }
