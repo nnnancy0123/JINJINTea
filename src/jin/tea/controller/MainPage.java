@@ -7,6 +7,7 @@ package jin.tea.controller;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import jin.tea.object.ProductObj;
 import jin.tea.object.CategoryObj;
 import jin.tea.object.ProductObj;
 import jin.tea.service.CategoryService;
@@ -299,35 +300,68 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    /**
+     * 商品情報一覧
+     *
+     * @param evt
+     */
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
-        // TODO add your handling code here:
 
         DefaultTableModel dfm = (DefaultTableModel) jTable4.getModel();
         int row = jTable4.getSelectedRow();
+
+        //カテゴリID取得
         String name = dfm.getValueAt(row, 0).toString();
         String category = name.substring(0, 4);
 
+        //画面テーブルをクリア
         DefaultTableModel df = (DefaultTableModel) jTable3.getModel();
         df.setRowCount(0);
 
         ProductService productservice = new ProductService();
+        //商品情報リスト取得メソッドを呼び出す
         List<ProductObj> productObjList = productservice.selectProductInfoByCategory(category);
 
+        //画面一覧セット
         for (ProductObj p : productObjList) {
+
             df.addRow(new Object[]{p.getProductId(), p.getProductName(), p.getPrice()});
 
         }
 
-
     }//GEN-LAST:event_jTable4MouseClicked
 
-
+    /**
+     * 商品会計情報一覧
+     *
+     * @param evt
+     */
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
-        // TODO add your handling code here:
+
+        DefaultTableModel dfm = (DefaultTableModel) jTable3.getModel();
+        int row = jTable3.getSelectedRow();
+
+        //商品ID取得
+        String name = dfm.getValueAt(row, 0).toString();
+        String product = name.substring(0, 4);
+
+        //画面テーブルをクリア
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        df.setRowCount(0);
+
+        ProductService productservice = new ProductService();
+        //商品選択情報リスト取得メソッドを呼び出す
+        List<ProductObj> ProductAccountList = productservice.selectProductInfoByProduct(product);
+
+        //画面一覧セット
+        for (ProductObj p : ProductAccountList) {
+
+            df.addRow(new Object[]{p.getProductId(), p.getProductName(), p.getPrice()});
     }//GEN-LAST:event_jTable3MouseClicked
+    }
 
     /**
      * @param args the command line arguments

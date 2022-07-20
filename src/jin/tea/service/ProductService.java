@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import static java.util.Collections.list;
 import java.util.List;
 import jin.tea.object.ProductObj;
 
@@ -159,10 +160,11 @@ public class ProductService {
     }
 
     /**
-     * 商品の内容とカテゴリーを連続する
+     * 選択されたカテゴリの商品情報取得
+     *
      * @param category カテゴリID
      *
-     * @return 商品リスト
+     * @return 商品情報リスト
      */
     public List<ProductObj> selectProductInfoByCategory(String category) {
         String url = "jdbc:postgresql://localhost:5432/kin";
@@ -177,6 +179,7 @@ public class ProductService {
                     + " on p.category_id = c.category_id where p.category_id = '" + category + "' order by p.product_id asc";
             ResultSet resultset = query.executeQuery(sql);
 
+            // 商品情報取得結果設定
             while (resultset.next()) {
 
                 ProductObj productconn = new ProductObj();
@@ -193,4 +196,37 @@ public class ProductService {
         return list;
     }
 
+    
+    public List<ProductObj> selectProductInfoByProduct(String product) {
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        List<ProductObj> list = new ArrayList<ProductObj>();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            Statement query = conn.createStatement();
+            String sql = "select a.*,p.product_id from tbl_account a"
+                    + " left join tbl_product p "
+                    + " on p.product_id = a.product_id where a.product_id = '" + product + "' order by p.product_id asc";
+            ResultSet resultset = query.executeQuery(sql);
+
+            // 商品情報取得結果設定
+            while (resultset.next()) {
+
+                ProductObj productconn = new ProductObj();
+                productconn.setProductId(resultset.getString("product_id"));
+                productconn.setProductName(resultset.getString("product_name"));
+                productconn.setPrice(String.valueOf(resultset.getInt("price")));
+                
+                list.add(productconn);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException");
+        }
+        return list;
+    }
+    
+    
 }
