@@ -196,37 +196,39 @@ public class ProductService {
         return list;
     }
 
-    
-    public List<ProductObj> selectProductInfoByProduct(String product) {
+    /**
+     * 選択された商品情報取得
+     *
+     * @param productId 商品ID
+     *
+     * @return 商品情報
+     */
+    public ProductObj selectProductInfoByProductId(String productId) {
         String url = "jdbc:postgresql://localhost:5432/kin";
         String user = "postgres";
         String password = "postgres";
-        List<ProductObj> list = new ArrayList<ProductObj>();
+        ProductObj productInfo = new ProductObj();
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
             Statement query = conn.createStatement();
-            String sql = "select a.*,p.product_id from tbl_account a"
-                    + " left join tbl_product p "
-                    + " on p.product_id = a.product_id where a.product_id = '" + product + "' order by p.product_id asc";
-            ResultSet resultset = query.executeQuery(sql);
+            String sql = "select p.product_id, p.product_name, p.price from tbl_product p "
+                    + " where p.product_id = '" + productId + "';";
+            ResultSet resultSet = query.executeQuery(sql);
+            
+            //商品情報取得
+            if (resultSet != null) {
 
-            // 商品情報取得結果設定
-            while (resultset.next()) {
-
-                ProductObj productconn = new ProductObj();
-                productconn.setProductId(resultset.getString("product_id"));
-                productconn.setProductName(resultset.getString("product_name"));
-                productconn.setPrice(String.valueOf(resultset.getInt("price")));
-                
-                list.add(productconn);
+                while (resultSet.next()) {
+                    productInfo.setProductId(resultSet.getString("product_id"));
+                    productInfo.setProductName(resultSet.getString("product_name"));
+                    productInfo.setPrice(String.valueOf(resultSet.getInt("price")));
+                }
             }
-
             conn.close();
         } catch (SQLException ex) {
             System.out.println("SQLException");
         }
-        return list;
+        return productInfo;
     }
-    
-    
+
 }

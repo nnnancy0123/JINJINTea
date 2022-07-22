@@ -20,9 +20,9 @@ public class ProductObj {
     private String warehouse;
     private String dateCreated;
     private String date_modified;
-
-   
-
+    private int productNum;
+    private int productDiscount;
+    
     public String getProductId() {
         return productId;
     }
@@ -78,7 +78,8 @@ public class ProductObj {
     public void setWarehouse(String warehouse) {
         this.warehouse = warehouse;
     }
-     public String getDateCreated() {
+
+    public String getDateCreated() {
         return dateCreated;
     }
 
@@ -93,5 +94,22 @@ public class ProductObj {
     public void setDate_modified(String date_modified) {
         this.date_modified = date_modified;
     }
+
+    public int getProductNum() {
+        return productNum;
+    }
+
+    public void setProductNum(int productNum) {
+        this.productNum = productNum;
+    }
+
+    public int getProductDiscount() {
+        return productDiscount;
+    }
+
+    public void setProductDiscount(int productDiscount) {
+        this.productDiscount = productDiscount;
+    }
+
 
 }
