@@ -21,7 +21,7 @@ import jin.tea.object.ProductObj;
  *
  * @author user
  */
-public class ProductService {
+public  class ProductService {
 
     public void createProductInfo(String productid, String productname, int sort, String category, int price, int maxnum, int warehouse) {
 
