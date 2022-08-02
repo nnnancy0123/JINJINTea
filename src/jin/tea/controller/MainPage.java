@@ -302,11 +302,11 @@ public class MainPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        
+
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -373,7 +373,7 @@ public class MainPage extends javax.swing.JFrame {
         }
 
         int rows = jTable1.getRowCount();
-        
+
         //合計を求める
         int sum = 0;
         for (int i = 0; i < rows; i++) {
@@ -389,23 +389,23 @@ public class MainPage extends javax.swing.JFrame {
         //合計を表示する
         jLabel4.setText(String.valueOf(sum));
         // システム日付取得
-         LocalDateTime date = LocalDateTime.now();
-         DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
-                String formatNowDate = dtf3.format(date);
-        
-         //オーダー伝票番号を生成する
-             int min_val = 1;
-             int max_val = 10;
+        LocalDateTime date = LocalDateTime.now();
+        DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
+        String formatNowDate = dtf3.format(date);
+
+        //オーダー伝票番号を生成する
+        int min_val = 1;
+        int max_val = 10;
         //数字を乱数を生成する
-             double randomNum = Math.random() * ( max_val - min_val );
-             String orderNo = "DC" + String.valueOf(randomNum) + formatNowDate;
-        
-         //オーダー伝票番号を表示する
+        double randomNum = Math.random() * (max_val - min_val);
+        String orderNo = "DC" + String.valueOf(randomNum) + formatNowDate;
+
+        //オーダー伝票番号を表示する
         jLabel6.setText(orderNo);
 
     }//GEN-LAST:event_jTable3MouseClicked
 
-     /**
+    /**
      * 個数を変更する場合、合計リセット
      *
      * @param evt
@@ -428,23 +428,30 @@ public class MainPage extends javax.swing.JFrame {
 
         }
 
-        jLabel4.setText(String.valueOf(sum)); 
+        jLabel4.setText(String.valueOf(sum));
 
     }//GEN-LAST:event_jTable1MouseClicked
 
+    /**
+     * 商品の合計情報一覧
+     *
+     * @param evt
+     *
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       String discount = jTextField3.getText();
-       String annex = jTextField2.getText(); 
-       
+        
+        int discount = Integer.valueOf(jTextField3.getText());
+        discount = (100 - discount)/100;
+        int payment = Integer.valueOf(jTextField2.getText());
+        int sum = Integer.valueOf(jLabel4.getText());
+        
+        //sum = sum * (100-discount)/100;
+    
         //おつりを計算する
-       String coin = annex;
-       jLabel5.setText(String.valueOf(coin));
-       
-       
-        
-        
-        
-        
+
+        jLabel5.setText(String.valueOf(payment - sum * discount));
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
