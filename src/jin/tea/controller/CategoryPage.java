@@ -36,7 +36,6 @@ public class CategoryPage extends javax.swing.JFrame {
 
             
 
-
         }
     }
 
@@ -184,7 +183,6 @@ public class CategoryPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
 
         CreateCategoryPage cp = new CreateCategoryPage();
         cp.setVisible(true);//跳转页面，true表可销毁
@@ -192,11 +190,9 @@ public class CategoryPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
 
         DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
         int row = jTable1.getSelectedRow();
-        //
         CategoryObj cl = new CategoryObj();
         cl.setCategoryId(df.getValueAt(row, 0).toString());
         cl.setCategoryName(df.getValueAt(row, 1).toString());

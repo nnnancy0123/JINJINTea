@@ -5,6 +5,13 @@
  */
 package jin.tea.controller;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import jin.tea.object.CategoryObj;
+import jin.tea.object.OrderObj;
+import jin.tea.service.AccountHelpService;
+import jin.tea.service.CategoryService;
+
 /**
  *
  * @author user
@@ -16,6 +23,20 @@ public class OrderPage extends javax.swing.JFrame {
      */
     public OrderPage() {
         initComponents();
+        getOrderList();
+
+    }
+
+    public void getOrderList() {//保留当前页面数据显示,在构造方法里写新的方法
+        AccountHelpService list = new AccountHelpService();
+        List<OrderObj> listinfo = list.orderList();
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        df.setRowCount(0);
+
+        for (OrderObj c : listinfo) {
+            df.addRow(new Object[]{c.getOrderId(), c.getProductId(), c.getProductName(), c.getProductPrice(), c.getProductNom(),c.getDateCreated(),c.getDateModified()});
+
+        }
     }
 
     /**
@@ -65,6 +86,11 @@ public class OrderPage extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 153, 51));
         jButton2.setText("リフレッシュ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         削除.setBackground(new java.awt.Color(255, 0, 0));
         削除.setText("削除");
@@ -135,6 +161,10 @@ public class OrderPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        getCategoryList();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -182,4 +212,8 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton 削除;
     // End of variables declaration//GEN-END:variables
+
+    private void getCategoryList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

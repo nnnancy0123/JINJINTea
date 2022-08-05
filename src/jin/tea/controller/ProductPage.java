@@ -23,8 +23,6 @@ public class ProductPage extends javax.swing.JFrame {
     public ProductPage() {
         initComponents();
         getProductInfo();
-//         Calendar calendar = Calendar.getInstance();
-//         ProductPage t = new ProductPage();
 
         
          

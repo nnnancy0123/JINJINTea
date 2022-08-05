@@ -7,10 +7,13 @@ package jin.tea.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import jin.tea.object.CategoryObj;
+import jin.tea.object.OrderObj;
 import jin.tea.object.ProductObj;
+import jin.tea.service.AccountHelpService;
 import jin.tea.service.CategoryService;
 import jin.tea.service.ProductService;
 
@@ -19,6 +22,9 @@ import jin.tea.service.ProductService;
  * @author user
  */
 public class MainPage extends javax.swing.JFrame {
+
+    // オーダー情報サービス
+    AccountHelpService accountHelpService = new AccountHelpService();
 
     /**
      * Creates new form AccountPage
@@ -439,17 +445,41 @@ public class MainPage extends javax.swing.JFrame {
      *
      */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         int discount = Integer.valueOf(jTextField3.getText());
         System.out.println(discount);
         int payment = Integer.valueOf(jTextField2.getText());
         int sum = Integer.valueOf(jLabel4.getText());
-        
-        sum = sum * (100-discount)/100;
-    
-        //おつりを計算する
+        sum = sum * (100 - discount) / 100;
 
+        //おつりを計算する
         jLabel5.setText(String.valueOf(payment - sum));
+
+        //購入した商品情報取得
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        int rows = jTable1.getRowCount();
+
+        List<OrderObj> orderObjList = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            OrderObj order = new OrderObj();
+            order.setOrderId(jLabel6.getText());
+            order.setProductId(df.getValueAt(i, 0).toString());
+            order.setProductName(df.getValueAt(i, 1).toString());
+            order.setProductPrice(Integer.parseInt(df.getValueAt(i, 2).toString()));
+            order.setProductNom(Integer.parseInt(df.getValueAt(i, 3).toString()));
+            orderObjList.add(order);
+        }
+
+        for (OrderObj orderInfo : orderObjList) {
+            
+            accountHelpService.createOrderInfo(orderInfo);
+
+        }
+
+
+        OrderPage or = new OrderPage();
+        or.setVisible(true);//初期状態で可視
+        this.dispose();
 
 
     }//GEN-LAST:event_jButton2ActionPerformed

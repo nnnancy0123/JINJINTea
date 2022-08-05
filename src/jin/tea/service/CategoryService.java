@@ -135,30 +135,4 @@ public class CategoryService {
             System.out.println("SQLException");
         }
     }
-
-//    public List<ProductObj> getProductName() {
-//        String url = "jdbc:postgresql://localhost:5432/kin";
-//        String user = "postgres";
-//        String password = "postgres";
-//        List<ProductObj> list = new ArrayList<ProductObj>();
-//        try {
-//            Connection conn = DriverManager.getConnection(url, user, password);
-//            Statement query = conn.createStatement();
-//            ResultSet resultset = query.executeQuery("SELECT * FROM tbl_product");
-//            while (resultset.next()) {
-//
-//                ProductObj protectlist = new ProductObj();
-//                protectlist.setProductId(resultset.getString("product_id"));
-//                protectlist.setProductName(resultset.getString("product_name"));
-//                protectlist.setPrice(resultset.getString("price"));
-//                
-//                list.add(protectlist);
-//            }
-//
-//            conn.close();
-//        } catch (SQLException ex) {
-//            System.out.println("SQLException");
-//        }
-//        return list;
-//    }
 }
