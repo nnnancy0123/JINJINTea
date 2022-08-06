@@ -11,13 +11,13 @@ package jin.tea.object;
  */
 public class OrderObj {
 
-    public String orderId;
-    public String productId;
-    public String productName;
-    public int productPrice;
-    public int productNom;
-    public String dateCreated;
-    public String dateModified;
+    private String orderId;
+    private String productId;
+    private String productName;
+    private int productPrice;
+    private int productNum;
+    private String dateCreated;
+    private String dateModified;
 
     public String getOrderId() {
         return orderId;
@@ -76,15 +76,15 @@ public class OrderObj {
     /**
      * @return the productNom
      */
-    public int getProductNom() {
-        return productNom;
+    public int getProductNum() {
+        return productNum;
     }
 
     /**
      * @param productNom the productNom to set
      */
-    public void setProductNom(int productNom) {
-        this.productNom = productNom;
+    public void setProductNum(int productNom) {
+        this.productNum = productNom;
     }
 
 }

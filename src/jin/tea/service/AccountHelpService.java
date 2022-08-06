@@ -13,9 +13,8 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import jin.tea.object.CategoryObj;
+import jin.tea.object.OrderNumObj;
 import jin.tea.object.OrderObj;
-import jin.tea.object.ProductObj;
 
 /**
  *
@@ -36,8 +35,8 @@ public class AccountHelpService {
             Connection conn = DriverManager.getConnection(url, user, password);
 
             Statement query = conn.createStatement();
-            String sql = "insert into tbl_order( order_id,product_id,product_name,product_price,product_nom,date_created,date_modified) "
-                    + "values('" + orderObj.getOrderId() + "','" + orderObj.getProductId() + "','" + orderObj.getProductName() + "'," + orderObj.getProductPrice() + "," + orderObj.getProductNom() + ",'" + date + "'," + "'" + date + "'" + ")";
+            String sql = "insert into tbl_order( order_id,product_id,product_name,product_price,product_num,date_created,date_modified) "
+                    + "values('" + orderObj.getOrderId() + "','" + orderObj.getProductId() + "','" + orderObj.getProductName() + "'," + orderObj.getProductPrice() + "," + orderObj.getProductNum() + ",'" + date + "'," + "'" + date + "'" + ")";
 
             System.out.println(sql);
             query.execute(sql);
@@ -50,7 +49,7 @@ public class AccountHelpService {
     }
 
     public void conn(int sum) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -74,7 +73,7 @@ public class AccountHelpService {
                 orderlistinfo.setProductId(resultset.getString("product_id"));
                 orderlistinfo.setProductName(resultset.getString("product_name"));
                 orderlistinfo.setProductPrice(resultset.getInt("product_price"));
-                orderlistinfo.setProductNom(resultset.getInt("product_nom"));
+                orderlistinfo.setProductNum(resultset.getInt("product_num"));
                 orderlistinfo.setDateCreated(resultset.getString("date_created"));
                 orderlistinfo.setDateModified(resultset.getString("date_modified"));
 
@@ -87,4 +86,63 @@ public class AccountHelpService {
         }
         return list;
     }
+
+    public void createOrderNumInfo(String orderid, int orderprice) {
+
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+
+        //＠システムの時間を取る  
+        LocalDateTime date = LocalDateTime.now();
+
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+
+            Statement query = conn.createStatement();
+            String sql = "insert into tbl_orderNum( order_id,order_price,date_created,date_modified) "
+                    + "values('" + orderid + "'," +orderprice + ",'" + date + "'," + "'" + date + "'" + ")";
+
+            System.out.println(sql);
+            query.execute(sql);
+
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException");
+        }
+
+    }
+
+
+    public void conn(String orderId, int sum1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     public List<OrderNumObj> orderNumList() {
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        List<OrderNumObj> list = new ArrayList<OrderNumObj>();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+
+            Statement query = conn.createStatement();
+            ResultSet resultset = query.executeQuery("SELECT * FROM tbl_orderNum ");
+            while (resultset.next()) {
+                OrderNumObj orderlistinfo = new OrderNumObj();
+                orderlistinfo.setOrderId(resultset.getString("order_id"));
+                orderlistinfo.setOrderPrice(resultset.getInt("order_price"));
+                orderlistinfo.setDateCreated(resultset.getString("date_created"));
+                orderlistinfo.setDateModified(resultset.getString("date_modified"));
+
+                list.add(orderlistinfo);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException");
+        }
+        return list;
+    }
+
 }

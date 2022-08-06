@@ -7,42 +7,42 @@ package jin.tea.controller;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import jin.tea.object.CategoryObj;
+import jin.tea.object.OrderNumObj;
 import jin.tea.object.OrderObj;
 import jin.tea.service.AccountHelpService;
-import jin.tea.service.CategoryService;
 
 /**
  *
  * @author user
  */
-public class OrderPage extends javax.swing.JFrame {
+public class OrderNumberPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form OrderPage
+     * Creates new form OrderNumberPage
      */
-    public OrderPage() {
+    public OrderNumberPage() {
         initComponents();
-        getOrderList();
-
+        getOrderNumList();
     }
-
+   
+      
      /**
      * オーダー詳細情報一覧
      * 
      */
     
-    public void getOrderList() {//現在のページ情報を保留しながら、表示する。新しいメッソドを書く
+    public void getOrderNumList() {//現在のページ情報を保留しながら、表示する。新しいメッソドを書く
         AccountHelpService list = new AccountHelpService();
-        List<OrderObj> listinfo = list.orderList();
+        List<OrderNumObj> listinfo = list.orderNumList();
         DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
         df.setRowCount(0);
 
-        for (OrderObj c : listinfo) {
-            df.addRow(new Object[]{c.getOrderId(), c.getProductId(), c.getProductName(), c.getProductPrice(), c.getProductNum(),c.getDateCreated(),c.getDateModified()});
+        for (OrderNumObj c : listinfo) {
+            df.addRow(new Object[]{c.getOrderId(),  c.getOrderPrice(), c.getDateCreated(),c.getDateModified()});
 
         }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,14 +55,14 @@ public class OrderPage extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
-        削除 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
+        削除 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,14 +71,10 @@ public class OrderPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "オーダーID", "オーダー内容 ", "金額", "作成日付", "更新日付"
+                "オーダー番号", "金額", "作成日付", "更新日付"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        jLabel2.setText("2022/07/12 火　17：54");
-
-        jLabel3.setText("ID:0001");
 
         jButton1.setText("ログイン画面");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,16 +85,9 @@ public class OrderPage extends javax.swing.JFrame {
 
         jLabel1.setText("JINJINお茶");
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 51));
-        jButton2.setText("リフレッシュ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("ID:0001");
 
-        削除.setBackground(new java.awt.Color(255, 0, 0));
-        削除.setText("削除");
+        jLabel2.setText("2022/07/12 火　17：54");
 
         jButton3.setText("編集");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -107,11 +96,22 @@ public class OrderPage extends javax.swing.JFrame {
             }
         });
 
+        削除.setBackground(new java.awt.Color(255, 0, 0));
+        削除.setText("削除");
+
+        jButton2.setBackground(new java.awt.Color(255, 153, 51));
+        jButton2.setText("リフレッシュ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -121,7 +121,7 @@ public class OrderPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
-            .addComponent(jSeparator1)
+            .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -131,23 +131,23 @@ public class OrderPage extends javax.swing.JFrame {
                         .addComponent(削除, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
                 .addGap(10, 10, 10)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(削除, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,7 +167,7 @@ public class OrderPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        getCategoryList();
+       getOrderNumList();      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -187,20 +187,20 @@ public class OrderPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderNumberPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderNumberPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderNumberPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderNumberPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrderPage().setVisible(true);
+                new OrderNumberPage().setVisible(true);
             }
         });
     }
@@ -213,12 +213,8 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton 削除;
     // End of variables declaration//GEN-END:variables
-
-    private void getCategoryList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

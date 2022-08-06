@@ -466,21 +466,23 @@ public class MainPage extends javax.swing.JFrame {
             order.setProductId(df.getValueAt(i, 0).toString());
             order.setProductName(df.getValueAt(i, 1).toString());
             order.setProductPrice(Integer.parseInt(df.getValueAt(i, 2).toString()));
-            order.setProductNom(Integer.parseInt(df.getValueAt(i, 3).toString()));
+            order.setProductNum(Integer.parseInt(df.getValueAt(i, 3).toString()));
             orderObjList.add(order);
         }
 
         for (OrderObj orderInfo : orderObjList) {
-            
-            accountHelpService.createOrderInfo(orderInfo);
 
+            accountHelpService.createOrderInfo(orderInfo);
         }
 
+        String orderId = jLabel6.getText();
+        int sum1 = Integer.valueOf(jLabel4.getText());
+        AccountHelpService orderNum = new AccountHelpService();
+        orderNum.createOrderNumInfo(orderId, sum1);
 
-        OrderPage or = new OrderPage();
-        or.setVisible(true);//初期状態で可視
+        OrderNumberPage cl = new OrderNumberPage();
+        cl.setVisible(true);//初期状態で可視
         this.dispose();
-
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
