@@ -8,6 +8,7 @@ package jin.tea.controller;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import jin.tea.object.CategoryObj;
+import jin.tea.object.OrderNumObj;
 import jin.tea.object.OrderObj;
 import jin.tea.service.AccountHelpService;
 import jin.tea.service.CategoryService;
@@ -27,11 +28,9 @@ public class OrderPage extends javax.swing.JFrame {
 
     }
 
-     /**
+    /**
      * オーダー詳細情報一覧
-     * 
      */
-    
     public void getOrderList() {//現在のページ情報を保留しながら、表示する。新しいメッソドを書く
         AccountHelpService list = new AccountHelpService();
         List<OrderObj> listinfo = list.orderList();
@@ -39,7 +38,7 @@ public class OrderPage extends javax.swing.JFrame {
         df.setRowCount(0);
 
         for (OrderObj c : listinfo) {
-            df.addRow(new Object[]{c.getOrderId(), c.getProductId(), c.getProductName(), c.getProductPrice(), c.getProductNum(),c.getDateCreated(),c.getDateModified()});
+            df.addRow(new Object[]{c.getOrderId(), c.getProductId(), c.getProductName(), c.getProductPrice(), c.getProductNum(), c.getDateCreated(), c.getDateModified()});
 
         }
     }
@@ -71,7 +70,7 @@ public class OrderPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "オーダーID", "オーダー内容 ", "金額", "作成日付", "更新日付"
+                "オーダーID", "商品ID", "商品名", "商品金額", "数量", "作成日付", "更新日付"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -132,7 +131,7 @@ public class OrderPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +162,23 @@ public class OrderPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        OrderObj cl = new OrderObj();
+        cl.setOrderId(df.getValueAt(row, 0).toString());
+        cl.setProductId(df.getValueAt(row, 1).toString().trim());
+        cl.setProductName(df.getValueAt(row, 2).toString().trim());
+        cl.setProductPrice(Integer.parseInt(df.getValueAt(row, 3).toString()));
+        cl.setProductNum(Integer.parseInt(df.getValueAt(row, 4).toString()));
+        AccountHelpService c = new AccountHelpService();
+        c.orderUpdate(cl);
+
+        System.out.println(df.getValueAt(row, 0));
+        System.out.println(df.getValueAt(row, 1));
+        System.out.println(df.getValueAt(row, 2));
+        System.out.println(df.getValueAt(row, 3));
+        System.out.println(df.getValueAt(row, 4));
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

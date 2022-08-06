@@ -26,13 +26,11 @@ public class OrderNumberPage extends javax.swing.JFrame {
         initComponents();
         getOrderNumList();
     }
-   
-      
-     /**
+
+    /**
      * オーダー情報一覧
-     * 
+     *
      */
-    
     public void getOrderNumList() {//現在のページ情報を保留しながら、表示する。新しいメッソドを書く
         AccountHelpService list = new AccountHelpService();
         List<OrderNumObj> listinfo = list.orderNumList();
@@ -40,11 +38,10 @@ public class OrderNumberPage extends javax.swing.JFrame {
         df.setRowCount(0);
 
         for (OrderNumObj c : listinfo) {
-            df.addRow(new Object[]{c.getOrderId(),  c.getOrderPrice(), c.getDateCreated(),c.getDateModified()});
+            df.addRow(new Object[]{c.getOrderId(), c.getOrderPrice(), c.getDateCreated(), c.getDateModified()});
 
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,6 +97,11 @@ public class OrderNumberPage extends javax.swing.JFrame {
 
         削除.setBackground(new java.awt.Color(255, 0, 0));
         削除.setText("削除");
+        削除.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                削除ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 153, 51));
         jButton2.setText("リフレッシュ");
@@ -163,20 +165,19 @@ public class OrderNumberPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-     
-    
+
     /**
      * オーダー情報更新
-     * 
+     *
      */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
         int row = jTable1.getSelectedRow();
         OrderNumObj cl = new OrderNumObj();
         cl.setOrderId(df.getValueAt(row, 0).toString());
         cl.setOrderPrice(Integer.parseInt(df.getValueAt(row, 1).toString()));
         AccountHelpService c = new AccountHelpService();
-        c.orderUpdate(cl);
+        c.orderNumUpdate(cl);
 
         System.out.println(df.getValueAt(row, 0));
         System.out.println(df.getValueAt(row, 1));
@@ -184,8 +185,19 @@ public class OrderNumberPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       getOrderNumList();      
+        getOrderNumList();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void 削除ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_削除ActionPerformed
+
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        
+        OrderNumObj cl = new OrderNumObj();
+        cl.setOrderId(df.getValueAt(row, 0).toString());
+        AccountHelpService c = new AccountHelpService();
+        c.orderNumDelete(cl);
+    }//GEN-LAST:event_削除ActionPerformed
 
     /**
      * @param args the command line arguments
