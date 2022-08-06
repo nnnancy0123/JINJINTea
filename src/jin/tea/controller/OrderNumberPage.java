@@ -7,9 +7,11 @@ package jin.tea.controller;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import jin.tea.object.CategoryObj;
 import jin.tea.object.OrderNumObj;
 import jin.tea.object.OrderObj;
 import jin.tea.service.AccountHelpService;
+import jin.tea.service.CategoryService;
 
 /**
  *
@@ -27,7 +29,7 @@ public class OrderNumberPage extends javax.swing.JFrame {
    
       
      /**
-     * オーダー詳細情報一覧
+     * オーダー情報一覧
      * 
      */
     
@@ -161,9 +163,24 @@ public class OrderNumberPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+     
+    
+    /**
+     * オーダー情報更新
+     * 
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+         DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        OrderNumObj cl = new OrderNumObj();
+        cl.setOrderId(df.getValueAt(row, 0).toString());
+        cl.setOrderPrice(Integer.parseInt(df.getValueAt(row, 1).toString()));
+        AccountHelpService c = new AccountHelpService();
+        c.orderUpdate(cl);
+
+        System.out.println(df.getValueAt(row, 0));
+        System.out.println(df.getValueAt(row, 1));
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

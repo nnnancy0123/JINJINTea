@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import jin.tea.object.CategoryObj;
 import jin.tea.object.OrderNumObj;
 import jin.tea.object.OrderObj;
 
@@ -22,6 +23,10 @@ import jin.tea.object.OrderObj;
  */
 public class AccountHelpService {
 
+    /**
+     * オーダー詳細情報生成する
+     *
+     */
     public void createOrderInfo(OrderObj orderObj) {
 
         String url = "jdbc:postgresql://localhost:5432/kin";
@@ -53,7 +58,7 @@ public class AccountHelpService {
     }
 
     /**
-     * オーダー情報一覧取得処理
+     * オーダー詳細情報一覧取得処理
      *
      * @return オーダーリスト
      */
@@ -87,6 +92,10 @@ public class AccountHelpService {
         return list;
     }
 
+    /**
+     * オーダー情報一覧生成する
+     *
+     */
     public void createOrderNumInfo(String orderid, int orderprice) {
 
         String url = "jdbc:postgresql://localhost:5432/kin";
@@ -101,7 +110,7 @@ public class AccountHelpService {
 
             Statement query = conn.createStatement();
             String sql = "insert into tbl_orderNum( order_id,order_price,date_created,date_modified) "
-                    + "values('" + orderid + "'," +orderprice + ",'" + date + "'," + "'" + date + "'" + ")";
+                    + "values('" + orderid + "'," + orderprice + ",'" + date + "'," + "'" + date + "'" + ")";
 
             System.out.println(sql);
             query.execute(sql);
@@ -113,12 +122,16 @@ public class AccountHelpService {
 
     }
 
-
+    /**
+     * オーダー情報一覧取得処理
+     *
+     * @return オーダーリスト
+     */
     public void conn(String orderId, int sum1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     public List<OrderNumObj> orderNumList() {
+
+    public List<OrderNumObj> orderNumList() {
         String url = "jdbc:postgresql://localhost:5432/kin";
         String user = "postgres";
         String password = "postgres";
@@ -143,6 +156,37 @@ public class AccountHelpService {
             System.out.println("SQLException");
         }
         return list;
+    }
+
+    /**
+     * オーダー情報更新処理
+     *
+     */
+    public void orderUpdate(OrderNumObj cl) {
+
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+
+            Statement query = conn.createStatement();
+
+            StringBuffer sb = new StringBuffer();
+            sb.append("update tbl_orderNum set ");
+            sb.append("order_id = '" + cl.getOrderId() + "',");
+            sb.append(" order_price = " + cl.getOrderPrice() + "");
+            sb.append(" where ");
+            sb.append("order_id = '" + cl.getOrderId() + "'");
+            sb.append(";");
+
+            System.out.println(sb.toString());
+            query.executeUpdate(sb.toString());
+
+        } catch (SQLException e) {
+            System.out.println("SQLException");
+        }
+
     }
 
 }
