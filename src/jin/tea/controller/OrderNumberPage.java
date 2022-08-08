@@ -229,20 +229,20 @@ public class OrderNumberPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    
+
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-//
-//        DefaultTableModel dfm = (DefaultTableModel) jTable1.getModel();
-//        int row = jTable1.getSelectedRow();
+
+        DefaultTableModel dfm = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
 
         //オーダーID取得
-//        String name = dfm.getValueAt(row, 0).toString();
-//        String order = name.substring(0, 31);
-        
-        //画面テーブルをクリア
+        String name = dfm.getValueAt(row, 0).toString();
+        String order = name.substring(0, 31);
+
+//        //画面テーブルをクリア
         OrderPage cl = new OrderPage();
-//        DefaultTableModel df = (DefaultTableModel) cl.addMouseListener();
-//        df.setRowCount(0);
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        df.setRowCount(0);
         cl.setVisible(true);//初期状態で可視
         this.dispose();
 
