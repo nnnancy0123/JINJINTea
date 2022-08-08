@@ -122,6 +122,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x30ed;&#x30b0;&#x30a4;&#x30f3;&#x753b;&#x9762;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

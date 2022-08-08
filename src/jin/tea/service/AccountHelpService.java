@@ -16,6 +16,7 @@ import java.util.List;
 import jin.tea.object.CategoryObj;
 import jin.tea.object.OrderNumObj;
 import jin.tea.object.OrderObj;
+import jin.tea.object.ProductObj;
 
 /**
  *
@@ -151,6 +152,46 @@ public class AccountHelpService {
             System.out.println("SQLException");
         }
     }
+    
+    
+     /**
+     * 選択されたオーダー情報取得
+     *
+     * @param orderId オーダーID
+     *
+     * @return オーダー情報
+     */
+       public OrderObj selectOrderInfoByOrderId(String order) {
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        List<OrderObj> list = new ArrayList<OrderObj>();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            Statement query = conn.createStatement();
+            String sql ="select o.order_id, o.product_id, o.product_name, o.product_price, o.product_num from tbl_order o "
+                    + " where o.order_id = '" + order + "';";
+            ResultSet resultset = query.executeQuery(sql);
+
+            // 商品情報取得結果設定
+            while (resultset.next()) {
+
+                OrderObj orderconn = new OrderObj();
+                orderconn.setProductName(resultset.getString("order_id"));
+                orderconn.setProductId(resultset.getString("product_id"));
+                orderconn.setProductName(resultset.getString("product_name"));
+                orderconn.setProductPrice(resultset.getInt("product_price"));
+                orderconn.setProductNum(resultset.getInt("product_num"));
+                list.add(orderconn);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException");
+        }
+        return (OrderObj) list;
+    }
+    
 
     /**
      * オーダー情報一覧生成する

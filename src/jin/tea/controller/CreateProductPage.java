@@ -27,7 +27,7 @@ public class CreateProductPage extends javax.swing.JFrame {
 
         for (CategoryObj name : list) {
 
-            jComboBox1.addItem(name.getCategoryId() +":"+ name.getCategoryName());
+            jComboBox1.addItem(name.getCategoryId() + ":" + name.getCategoryName());
         }
 //        jComboBox1.addItem("紅茶ミルクティー");
 //        jComboBox1.addItem("黒糖");
@@ -70,6 +70,11 @@ public class CreateProductPage extends javax.swing.JFrame {
         jLabel1.setText("JINJINお茶");
 
         jToggleButton1.setText("ログイン画面");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("ID:0001");
 
@@ -241,6 +246,16 @@ public class CreateProductPage extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    /**
+     * 登録ページに戻る
+     *
+     */
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        LoginPage cl = new LoginPage();
+        cl.setVisible(true);//初期状態で可視
+        this.dispose();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
