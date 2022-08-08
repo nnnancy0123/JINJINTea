@@ -98,6 +98,11 @@ public class OrderPage extends javax.swing.JFrame {
 
         削除.setBackground(new java.awt.Color(255, 0, 0));
         削除.setText("削除");
+        削除.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                削除ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("編集");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +163,7 @@ public class OrderPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        getOrderList();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -182,8 +187,18 @@ public class OrderPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        getCategoryList();
+         getOrderList();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void 削除ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_削除ActionPerformed
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        
+        OrderObj cl = new OrderObj();
+        cl.setOrderId(df.getValueAt(row, 0).toString());
+        AccountHelpService c = new AccountHelpService();
+        c.orderDelete(cl);
+    }//GEN-LAST:event_削除ActionPerformed
 
     /**
      * @param args the command line arguments

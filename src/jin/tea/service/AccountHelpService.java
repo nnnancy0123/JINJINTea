@@ -92,7 +92,7 @@ public class AccountHelpService {
     }
 
     /**
-     * オーダー情報一覧生成する
+     * オーダー詳細情報一覧生成する
      *
      */
     public void orderUpdate(OrderObj cl) {
@@ -110,19 +110,46 @@ public class AccountHelpService {
             sb.append("order_id = '" + cl.getOrderId() + "',");
             sb.append("product_id = '" + cl.getProductId() + "',");
             sb.append("product_name = '" + cl.getProductName() + "',");
-            sb.append("order_price = " + cl.getProductPrice() + ",");
+            sb.append("product_price = " + cl.getProductPrice() + ",");
             sb.append("product_num = " + cl.getProductNum() + "");
             sb.append(" where ");
             sb.append("order_id = '" + cl.getOrderId() + "'");
             sb.append(";");
 
             System.out.println(sb.toString());
-//            query.executeUpdate(sb.toString());
+
 
         } catch (SQLException e) {
             System.out.println("SQLException");
         }
 
+    }
+    
+    /**
+     * オーダー詳細情報削除処理
+     *
+     */
+    public void orderDelete(OrderObj cl) {
+
+        String url = "jdbc:postgresql://localhost:5432/kin";
+        String user = "postgres";
+        String password = "postgres";
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+
+            Statement query = conn.createStatement();
+
+            StringBuffer sb = new StringBuffer();
+            sb.append("delete from tbl_order ");
+            sb.append(" where ");
+            sb.append("order_id = '" + cl.getOrderId() + "'");
+            sb.append(";");
+            System.out.println(sb.toString());
+            query.execute(sb.toString());
+
+        } catch (SQLException e) {
+            System.out.println("SQLException");
+        }
     }
 
     /**
@@ -248,4 +275,5 @@ public class AccountHelpService {
             System.out.println("SQLException");
         }
     }
+
 }
