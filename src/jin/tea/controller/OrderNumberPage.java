@@ -239,10 +239,11 @@ public class OrderNumberPage extends javax.swing.JFrame {
         String name = dfm.getValueAt(row, 0).toString();
         String order = name.substring(0, 31);
 
-//        //画面テーブルをクリア
+       //画面テーブルをクリア
+        
+//        DefaultTableModel df = (DefaultTableModel) jTable3.getModel();
+//        df.setRowCount(0);
         OrderPage cl = new OrderPage();
-        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
-        df.setRowCount(0);
         cl.setVisible(true);//初期状態で可視
         this.dispose();
 
@@ -255,7 +256,6 @@ public class OrderNumberPage extends javax.swing.JFrame {
             dfm.addRow(new Object[]{c.getOrderId(), c.getProductId(), c.getProductName(), c.getProductPrice(), c.getProductNum(), c.getDateCreated(), c.getDateModified()});
 
         }
-
 
     }//GEN-LAST:event_jTable1MouseClicked
 
