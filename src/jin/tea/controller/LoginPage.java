@@ -6,6 +6,7 @@
 package jin.tea.controller;
 
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,6 +34,7 @@ public class LoginPage extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jLabel6 = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -216,14 +218,21 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        String staffId = jTextField1.getText();
-        String password = String.valueOf(jPasswordField1.getPassword());
-        System.out.println(staffId);
-        System.out.println(password);
-
-        MainPage cl = new MainPage();
-        cl.setVisible(true);
-        this.dispose();
+        int staffId = Integer.parseInt(jTextField1.getText());
+        String passWord = jPasswordField1.getText();
+        
+        if ( staffId == 123){
+            System.out.println(staffId);
+            System.out.println(passWord);
+            MainPage cl = new MainPage();
+            cl.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "IDまたはパスワード間違いました！");
+            LoginPage cl = new LoginPage();
+            cl.setVisible(true);
+            this.dispose();
+        }
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -290,6 +299,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables

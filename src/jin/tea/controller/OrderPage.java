@@ -6,6 +6,7 @@
 package jin.tea.controller;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jin.tea.object.CategoryObj;
 import jin.tea.object.OrderNumObj;
@@ -25,8 +26,8 @@ public class OrderPage extends javax.swing.JFrame {
     public OrderPage() {
         initComponents();
         getOrderList();
-
     }
+    
 
     /**
      * オーダー詳細情報一覧
@@ -202,9 +203,11 @@ public class OrderPage extends javax.swing.JFrame {
         System.out.println(df.getValueAt(row, 3));
         System.out.println(df.getValueAt(row, 4));
 
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         getOrderList();
     }//GEN-LAST:event_jButton2ActionPerformed
 

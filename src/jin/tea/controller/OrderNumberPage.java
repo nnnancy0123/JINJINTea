@@ -6,6 +6,7 @@
 package jin.tea.controller;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jin.tea.object.OrderNumObj;
 import jin.tea.object.OrderObj;
@@ -204,9 +205,12 @@ public class OrderNumberPage extends javax.swing.JFrame {
         System.out.println(df.getValueAt(row, 0));
         System.out.println(df.getValueAt(row, 1));
 
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JOptionPane.showMessageDialog(this, "オーダー情報更新しますか？");
+        this.dispose();
         getOrderNumList();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -239,8 +243,7 @@ public class OrderNumberPage extends javax.swing.JFrame {
         String name = dfm.getValueAt(row, 0).toString();
         String order = name.substring(0, 31);
 
-       //画面テーブルをクリア
-        
+        //画面テーブルをクリア
 //        DefaultTableModel df = (DefaultTableModel) jTable3.getModel();
 //        df.setRowCount(0);
         OrderPage cl = new OrderPage();
